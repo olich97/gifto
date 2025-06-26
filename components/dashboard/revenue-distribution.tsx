@@ -8,7 +8,7 @@ async function RevenueDistributionContent() {
 	const data = await getDistributionData("products");
 
 	return (
-		<Card>
+		<Card className="bg-black/40 backdrop-blur-sm border-white/10">
 			<CardHeader>
 				<CardTitle>Revenue Distribution</CardTitle>
 			</CardHeader>
@@ -23,7 +23,7 @@ async function RevenueDistributionContent() {
 
 function RevenueDistributionSkeleton() {
 	return (
-		<Card>
+		<Card className="bg-black/40 backdrop-blur-sm border-white/10">
 			<CardHeader>
 				<CardTitle>Revenue Distribution</CardTitle>
 			</CardHeader>

@@ -53,52 +53,61 @@ export interface TemplateConfig {
 // Default template configuration
 export const templateConfig: TemplateConfig = {
   branding: {
-    appName: "Dashboard Template",
-    tagline: "Modern Analytics Dashboard",
-    description: "A beautiful, customizable dashboard template built with Next.js",
-    logoLight: "/logo_black.png",
-    logoDark: "/logo_white.png",
+    appName: "gifto",
+    tagline: "Instant Crypto Gift Cards",
+    description: "Send Hedera tokens as digital gift cards that can be shared by link or QR and redeemed in seconds",
+    logoLight: "/gifto.png",
+    logoDark: "/gifto_white.png",
     favicon: "/favicon.ico",
   },
   
   navigation: [
     {
-      title: "Overview",
+      title: "Dashboard",
       href: "/dashboard",
       icon: "home",
-      label: "overview",
+      label: "dashboard",
     },
     {
-      title: "Analytics", 
-      href: "/dashboard/analytics",
-      icon: "chart",
-      label: "analytics",
+      title: "Send a Gift", 
+      href: "/dashboard/send",
+      icon: "gift",
+      label: "send",
     },
     {
-      title: "Data",
-      href: "/dashboard/data", 
-      icon: "database",
-      label: "data",
+      title: "My Gifts",
+      href: "/dashboard/gifts", 
+      icon: "package",
+      label: "gifts",
     },
     {
-      title: "Reports",
-      href: "/dashboard/reports",
-      icon: "file-text",
-      label: "reports",
+      title: "Redeem",
+      href: "/dashboard/redeem",
+      icon: "download",
+      label: "redeem",
     },
   ],
   
   dashboard: {
-    title: "Analytics Overview",
-    subtitle: "Monitor your key metrics and performance indicators",
+    title: "Gift Dashboard",
+    subtitle: "Send and receive crypto gifts on Hedera Hashgraph",
+    externalLinks: [
+      { label: "HashScan Explorer", url: "https://hashscan.io", icon: "external-link" },
+      { label: "Hedera Portal", url: "https://portal.hedera.com", icon: "external-link" }
+    ],
   },
 
   features: {
-    dateRangePicker: true,
+    dateRangePicker: false,
     refreshButton: true,
-    search: true,
+    search: false,
     mobileSupport: true,
     darkMode: true,
+  },
+  
+  theme: {
+    primaryColor: "#FF4D9D",
+    accentColor: "#FF8A39",
   },
 };
 

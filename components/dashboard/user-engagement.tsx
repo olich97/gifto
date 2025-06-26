@@ -8,7 +8,7 @@ async function UserEngagementContent() {
 	const data = await getDistributionData("users");
 
 	return (
-		<Card>
+		<Card className="bg-black/40 backdrop-blur-sm border-white/10">
 			<CardHeader>
 				<CardTitle>User Engagement</CardTitle>
 			</CardHeader>
@@ -23,7 +23,7 @@ async function UserEngagementContent() {
 
 function UserEngagementSkeleton() {
 	return (
-		<Card>
+		<Card className="bg-black/40 backdrop-blur-sm border-white/10">
 			<CardHeader>
 				<CardTitle>User Engagement</CardTitle>
 			</CardHeader>

@@ -8,7 +8,7 @@ async function PerformanceOverviewContent() {
 	const data = await getPerformanceGrowth();
 
 	return (
-		<Card className="col-span-4">
+		<Card className="col-span-4 bg-black/40 backdrop-blur-sm border-white/10">
 			<CardHeader>
 				<CardTitle>Performance Overview</CardTitle>
 				<CardDescription>
@@ -26,7 +26,7 @@ async function PerformanceOverviewContent() {
 
 function PerformanceOverviewSkeleton() {
 	return (
-		<Card className="col-span-4">
+		<Card className="col-span-4 bg-black/40 backdrop-blur-sm border-white/10">
 			<CardHeader>
 				<CardTitle>Performance Overview</CardTitle>
 				<CardDescription>

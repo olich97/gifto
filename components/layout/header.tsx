@@ -28,7 +28,6 @@ import {
 	DropdownMenuSeparator,
 	DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import ThemeToggle from "./theme-toggle";
 
 interface HeaderProps extends React.HTMLAttributes<HTMLDivElement> {}
 
@@ -106,7 +105,7 @@ export default function Header({ className }: HeaderProps) {
 			</CommandDialog>
 
 			<div className="flex items-center gap-4">
-				<ThemeToggle />
+				{/* Theme toggle removed - dark mode only */}
 			</div>
 		</div>
 	);

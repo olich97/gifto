@@ -51,7 +51,9 @@ import {
   Target,
   ExternalLink,
   Search,
-  Filter
+  Filter,
+  Gift,
+  Download
 } from "lucide-react";
 
 export type Icon = LucideIcon;
@@ -108,6 +110,8 @@ export const Icons = {
 	"file-text": FileText,
 	"dollar-sign": DollarSign,
 	"shopping-cart": ShoppingCart,
+	gift: Gift,
+	download: Download,
 	twitter: (props: IconProps) => (
 		<svg
 			{...props}

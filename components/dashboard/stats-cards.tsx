@@ -47,7 +47,7 @@ async function StatsCardsContent() {
 				const changeBg = isPositive ? "bg-green-50 dark:bg-green-950" : "bg-red-50 dark:bg-red-950";
 				
 				return (
-					<Card key={item.title} className="transition-all duration-200 hover:shadow-md">
+					<Card key={item.title} className="bg-black/40 backdrop-blur-sm border-white/10 transition-all duration-200 hover:shadow-lg hover:border-white/20">
 						<CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
 							<CardTitle className="text-sm font-medium text-muted-foreground">
 								{item.title}
@@ -81,7 +81,7 @@ function StatsCardsSkeleton() {
 	return (
 		<div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
 			{[...Array(4)].map((_, i) => (
-				<Card key={i}>
+				<Card key={i} className="bg-black/40 backdrop-blur-sm border-white/10">
 					<CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
 						<Skeleton className="h-4 w-24" />
 						<Skeleton className="h-4 w-4" />

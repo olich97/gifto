@@ -37,6 +37,7 @@ export default function RefreshButton() {
 			size="sm"
 			onClick={handleRefresh}
 			disabled={isLoading}
+			className="border-primary/30 text-primary hover:bg-primary/10 hover:border-primary/50 transition-all duration-300"
 		>
 			<RefreshCw
 				className={`mr-2 h-4 w-4 ${isLoading ? "animate-spin" : ""}`}

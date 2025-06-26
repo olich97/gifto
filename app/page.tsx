@@ -6,39 +6,36 @@ import Image from "next/image";
 import { motion } from "framer-motion";
 import {
 	ArrowRight,
-	BarChart2,
-	TrendingUp,
-	Users,
-	Database,
-	Activity,
-	DollarSign,
+	Gift,
+	Send,
+	Download,
+	QrCode,
+	Link as LinkIcon,
 	Zap,
 	Shield,
-	Code,
 	Smartphone,
-	Palette,
+	Star,
+	Clock,
+	CheckCircle,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { useTheme } from "next-themes";
 import { templateConfig } from "@/template.config";
 
 export default function LandingPage() {
-	const { theme } = useTheme();
 	const [mounted, setMounted] = useState(false);
-	const [logo, setLogo] = useState(templateConfig.branding.logoLight);
+	const logo = templateConfig.branding.logoDark; // Always use dark logo
 
 	useEffect(() => {
 		setMounted(true);
-		const effectiveTheme = theme === "system" ? "light" : theme;
-		setLogo(effectiveTheme === "light" ? templateConfig.branding.logoLight : templateConfig.branding.logoDark);
-	}, [theme]);
+	}, []);
 
 	if (!mounted) return null;
 
 	return (
-		<div className="flex flex-col min-h-screen">
+		<div className="flex flex-col min-h-screen relative z-10">
+			
 			{/* Navbar */}
-			<nav className="border-b sticky top-0 z-50 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
+			<nav className="border-b border-white/10 sticky top-0 z-50 bg-black/20 backdrop-blur-md supports-[backdrop-filter]:bg-black/20">
 				<div className="container flex h-16 items-center justify-between">
 					<div className="flex items-center gap-2">
 						<Image
@@ -46,10 +43,10 @@ export default function LandingPage() {
 							width={130}
 							height={40}
 							alt={templateConfig.branding.appName}
-							className="w-32"
+							className="w-24 sm:w-32"
 						/>
 					</div>
-					<div className="flex items-center gap-4">
+					<div className="hidden md:flex items-center gap-4">
 						<Link
 							href="#features"
 							className="text-sm font-medium hover:underline"
@@ -69,44 +66,54 @@ export default function LandingPage() {
 							</Button>
 						</Link>
 					</div>
+					<div className="md:hidden">
+						<Link href="/dashboard" passHref>
+							<Button size="sm">
+								Dashboard
+								<ArrowRight className="ml-2 h-3 w-3" />
+							</Button>
+						</Link>
+					</div>
 				</div>
 			</nav>
 
 			{/* Hero Section */}
-			<section className="py-20 md:py-32 relative overflow-hidden">
-				<div className="absolute inset-0 bg-gradient-to-br from-primary/5 to-secondary/5 z-0" />
-				<div className="absolute top-0 left-0 right-0 h-[500px] bg-gradient-radial from-primary/5 to-transparent z-0" />
-				<div className="container relative z-10">
-					<div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+			<section className="py-12 sm:py-20 md:py-32 relative overflow-hidden">
+				<div className="absolute inset-0" style={{background: 'linear-gradient(135deg, rgba(255, 77, 157, 0.05) 0%, rgba(255, 138, 57, 0.05) 100%)'}} />
+				<div className="absolute top-1/4 left-1/4 w-96 h-96 rounded-full blur-3xl z-0" style={{background: 'linear-gradient(135deg, rgba(255, 77, 157, 0.1) 0%, rgba(255, 138, 57, 0.1) 100%)'}} />
+				<div className="container relative z-10 px-4">
+					<div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8 items-center">
 						<motion.div
 							initial={{ opacity: 0, x: -20 }}
 							animate={{ opacity: 1, x: 0 }}
 							transition={{ duration: 0.5 }}
+							className="text-center md:text-left"
 						>
-							<h1 className="text-4xl md:text-5xl lg:text-6xl font-extrabold tracking-tight mb-4">
-								Modern
-								<span className="bg-clip-text text-transparent bg-gradient-to-r from-blue-500 to-purple-500">
+							<h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-display font-bold tracking-tight mb-4">
+								Crypto
+								<span className="text-gradient_gifto">
 									{" "}
-									Dashboard{" "}
+									Gift Cards{" "}
 								</span>
-								Template
+								at Light Speed
 							</h1>
-							<p className="text-xl text-muted-foreground mb-8 max-w-md">
-								{templateConfig.branding.description}
+							<p className="text-lg sm:text-xl text-muted-foreground mb-6 md:mb-8 max-w-lg mx-auto md:mx-0">
+								Send Hedera tokens as digital gift cards that can be shared by link or QR and redeemed in seconds—no custodial account, no complicated UX.
 							</p>
-							<div className="flex flex-col sm:flex-row gap-4">
-								<Link href="/dashboard" passHref>
+							<div className="flex flex-col sm:flex-row gap-3 md:gap-4 items-center justify-center md:justify-start">
+								<Link href="/dashboard" passHref className="w-full sm:w-auto">
 									<Button
 										size="lg"
-										className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700"
+										className="btn-gifto text-base md:text-lg px-6 md:px-8 py-3 md:py-4 w-full sm:w-auto"
 									>
-										View Dashboard
-										<ArrowRight className="ml-2 h-5 w-5" />
+										<Gift className="mr-2 h-4 md:h-5 w-4 md:w-5" />
+										Send a Gift
 									</Button>
 								</Link>
-								<Link href="#how-it-works" passHref>
-									<Button size="lg" variant="outline">
-										Learn More
+								<Link href="/redeem" passHref className="w-full sm:w-auto">
+									<Button size="lg" variant="outline" className="border-primary text-primary hover:bg-primary/10 text-base md:text-lg px-6 md:px-8 py-3 md:py-4 w-full sm:w-auto">
+										Redeem Gift
+										<Download className="ml-2 h-4 md:h-5 w-4 md:w-5" />
 									</Button>
 								</Link>
 							</div>
@@ -115,12 +122,21 @@ export default function LandingPage() {
 							initial={{ opacity: 0, scale: 0.9 }}
 							animate={{ opacity: 1, scale: 1 }}
 							transition={{ duration: 0.5, delay: 0.2 }}
-							className="rounded-2xl overflow-hidden shadow-2xl border bg-card"
+							className="rounded-3xl overflow-hidden shadow-2xl border border-white/10 bg-black/40 backdrop-blur-sm"
 						>
-							<div className="w-full h-[360px] bg-gradient-to-br from-blue-50 to-purple-50 dark:from-blue-950 dark:to-purple-950 flex items-center justify-center">
-								<div className="text-center space-y-4">
-									<BarChart2 className="h-16 w-16 text-blue-500 mx-auto" />
-									<p className="text-muted-foreground font-medium">Dashboard Preview</p>
+							<div className="w-full h-[360px] flex items-center justify-center relative overflow-hidden" style={{background: 'linear-gradient(135deg, #1B1243 0%, #0C0E25 100%)'}}>
+								<div className="absolute inset-0" style={{background: 'linear-gradient(135deg, rgba(255, 77, 157, 0.15) 0%, rgba(255, 138, 57, 0.15) 100%)'}}></div>
+								<div className="absolute top-4 right-4 w-24 h-24 rounded-full" style={{background: 'radial-gradient(circle, rgba(255, 77, 157, 0.3) 0%, transparent 70%)'}}></div>
+								<div className="absolute bottom-4 left-4 w-16 h-16 rounded-full" style={{background: 'radial-gradient(circle, rgba(255, 138, 57, 0.2) 0%, transparent 70%)'}}></div>
+								<div className="text-center space-y-6 relative z-10">
+									<div className="w-20 h-20 rounded-2xl flex items-center justify-center mx-auto shadow-lg" style={{background: 'linear-gradient(135deg, #FF4D9D 0%, #FF8A39 100%)'}}>
+										<Gift className="h-10 w-10 text-white" />
+									</div>
+									<p className="text-white font-semibold text-lg">Gift Card Preview</p>
+									<div className="space-y-3">
+										<p className="font-mono text-xl font-bold" style={{color: '#29DFFF'}}>50.00 HBAR</p>
+										<span className="badge-pending">Ready to Send</span>
+									</div>
 								</div>
 							</div>
 						</motion.div>
@@ -129,7 +145,7 @@ export default function LandingPage() {
 			</section>
 
 			{/* Stats Section */}
-			<section className="py-16 bg-muted/50">
+			<section className="py-16 bg-black/30 backdrop-blur-sm border-y border-white/10">
 				<div className="container">
 					<div className="grid grid-cols-2 md:grid-cols-4 gap-4 text-center">
 						<motion.div
@@ -139,8 +155,8 @@ export default function LandingPage() {
 							transition={{ duration: 0.5 }}
 							className="p-6 rounded-lg"
 						>
-							<p className="text-3xl md:text-4xl font-bold mb-2">50+</p>
-							<p className="text-sm text-muted-foreground">Components</p>
+							<p className="text-3xl md:text-4xl font-bold mb-2 text-gradient_gifto">0</p>
+							<p className="text-sm text-muted-foreground">Custody Risk</p>
 						</motion.div>
 						<motion.div
 							initial={{ opacity: 0, y: 20 }}
@@ -149,8 +165,8 @@ export default function LandingPage() {
 							transition={{ duration: 0.5, delay: 0.1 }}
 							className="p-6 rounded-lg"
 						>
-							<p className="text-3xl md:text-4xl font-bold mb-2">100%</p>
-							<p className="text-sm text-muted-foreground">TypeScript</p>
+							<p className="text-3xl md:text-4xl font-bold mb-2" style={{color: '#5EF58C'}}>&lt;3s</p>
+							<p className="text-sm text-muted-foreground">Redemption Time</p>
 						</motion.div>
 						<motion.div
 							initial={{ opacity: 0, y: 20 }}
@@ -159,8 +175,8 @@ export default function LandingPage() {
 							transition={{ duration: 0.5, delay: 0.2 }}
 							className="p-6 rounded-lg"
 						>
-							<p className="text-3xl md:text-4xl font-bold mb-2">React 19</p>
-							<p className="text-sm text-muted-foreground">Latest Version</p>
+							<p className="text-3xl md:text-4xl font-bold mb-2" style={{color: '#29DFFF'}}>Hedera</p>
+							<p className="text-sm text-muted-foreground">Hashgraph</p>
 						</motion.div>
 						<motion.div
 							initial={{ opacity: 0, y: 20 }}
@@ -169,8 +185,8 @@ export default function LandingPage() {
 							transition={{ duration: 0.5, delay: 0.3 }}
 							className="p-6 rounded-lg"
 						>
-							<p className="text-3xl md:text-4xl font-bold mb-2">MIT</p>
-							<p className="text-sm text-muted-foreground">Open Source</p>
+							<p className="text-3xl md:text-4xl font-bold mb-2" style={{color: '#F9A23C'}}>$0</p>
+							<p className="text-sm text-muted-foreground">Transaction Fees*</p>
 						</motion.div>
 					</div>
 				</div>
@@ -187,7 +203,7 @@ export default function LandingPage() {
 							transition={{ duration: 0.5 }}
 							className="text-3xl md:text-4xl font-bold mb-4"
 						>
-							Powerful Features
+							<span className="text-gradient_gifto">Why Choose</span> Gifto?
 						</motion.h2>
 						<motion.p
 							initial={{ opacity: 0 }}
@@ -196,7 +212,7 @@ export default function LandingPage() {
 							transition={{ duration: 0.5, delay: 0.1 }}
 							className="text-xl text-muted-foreground max-w-2xl mx-auto"
 						>
-							Everything you need to build modern, beautiful dashboards
+							The safest, fastest way to send crypto gifts on Hedera Hashgraph
 						</motion.p>
 					</div>
 
@@ -206,17 +222,16 @@ export default function LandingPage() {
 							whileInView={{ opacity: 1, y: 0 }}
 							viewport={{ once: true }}
 							transition={{ duration: 0.5 }}
-							className="bg-card rounded-xl p-6 shadow-sm border"
+							className="bg-black/40 backdrop-blur-sm rounded-xl p-6 shadow-lg border border-white/10"
 						>
 							<div className="h-12 w-12 rounded-full bg-primary/10 flex items-center justify-center mb-6">
-								<BarChart2 className="h-6 w-6 text-primary" />
+								<Shield className="h-6 w-6 text-primary" />
 							</div>
 							<h3 className="text-xl font-semibold mb-2">
-								Beautiful Charts
+								Zero Custody Risk
 							</h3>
 							<p className="text-muted-foreground">
-								Interactive charts and visualizations with Recharts.
-								Area charts, pie charts, and bar charts included.
+								Funds stay in your wallet until redemption. Scheduled transactions on Hedera ensure complete security without custodial accounts.
 							</p>
 						</motion.div>
 
@@ -225,17 +240,16 @@ export default function LandingPage() {
 							whileInView={{ opacity: 1, y: 0 }}
 							viewport={{ once: true }}
 							transition={{ duration: 0.5, delay: 0.1 }}
-							className="bg-card rounded-xl p-6 shadow-sm border"
+							className="bg-black/40 backdrop-blur-sm rounded-xl p-6 shadow-lg border border-white/10"
 						>
 							<div className="h-12 w-12 rounded-full bg-primary/10 flex items-center justify-center mb-6">
-								<Code className="h-6 w-6 text-primary" />
+								<Zap className="h-6 w-6 text-primary" />
 							</div>
 							<h3 className="text-xl font-semibold mb-2">
-								Next.js 15 + TypeScript
+								Lightning Fast Redemption
 							</h3>
 							<p className="text-muted-foreground">
-								Built with the latest Next.js features including Turbopack,
-								Server Components, and full TypeScript support.
+								Recipients can claim gifts in under 3 seconds. Just scan QR code, connect wallet, and sign—instant transfer via Hedera.
 							</p>
 						</motion.div>
 
@@ -244,15 +258,14 @@ export default function LandingPage() {
 							whileInView={{ opacity: 1, y: 0 }}
 							viewport={{ once: true }}
 							transition={{ duration: 0.5, delay: 0.2 }}
-							className="bg-card rounded-xl p-6 shadow-sm border"
+							className="bg-black/40 backdrop-blur-sm rounded-xl p-6 shadow-lg border border-white/10"
 						>
 							<div className="h-12 w-12 rounded-full bg-primary/10 flex items-center justify-center mb-6">
-								<Palette className="h-6 w-6 text-primary" />
+								<QrCode className="h-6 w-6 text-primary" />
 							</div>
-							<h3 className="text-xl font-semibold mb-2">Modern UI Components</h3>
+							<h3 className="text-xl font-semibold mb-2">Share by Link or QR</h3>
 							<p className="text-muted-foreground">
-								Beautiful components built with shadcn/ui and Tailwind CSS.
-								Dark/light theme support included.
+								Send gifts via shareable links or QR codes. Works on any device—perfect for social media or in-person gifting.
 							</p>
 						</motion.div>
 
@@ -261,15 +274,14 @@ export default function LandingPage() {
 							whileInView={{ opacity: 1, y: 0 }}
 							viewport={{ once: true }}
 							transition={{ duration: 0.5, delay: 0.3 }}
-							className="bg-card rounded-xl p-6 shadow-sm border"
+							className="bg-black/40 backdrop-blur-sm rounded-xl p-6 shadow-lg border border-white/10"
 						>
 							<div className="h-12 w-12 rounded-full bg-primary/10 flex items-center justify-center mb-6">
-								<Zap className="h-6 w-6 text-primary" />
+								<CheckCircle className="h-6 w-6 text-primary" />
 							</div>
-							<h3 className="text-xl font-semibold mb-2">Server Actions</h3>
+							<h3 className="text-xl font-semibold mb-2">No Signup Required</h3>
 							<p className="text-muted-foreground">
-								Modern data fetching patterns with Server Actions,
-								Suspense boundaries, and loading states.
+								Frictionless onboarding for recipients. They only need a Hedera wallet—no accounts, no KYC, no complexity.
 							</p>
 						</motion.div>
 
@@ -278,15 +290,14 @@ export default function LandingPage() {
 							whileInView={{ opacity: 1, y: 0 }}
 							viewport={{ once: true }}
 							transition={{ duration: 0.5, delay: 0.4 }}
-							className="bg-card rounded-xl p-6 shadow-sm border"
+							className="bg-black/40 backdrop-blur-sm rounded-xl p-6 shadow-lg border border-white/10"
 						>
 							<div className="h-12 w-12 rounded-full bg-primary/10 flex items-center justify-center mb-6">
 								<Smartphone className="h-6 w-6 text-primary" />
 							</div>
-							<h3 className="text-xl font-semibold mb-2">Responsive Design</h3>
+							<h3 className="text-xl font-semibold mb-2">Mobile-First Design</h3>
 							<p className="text-muted-foreground">
-								Perfectly responsive layout that works beautifully
-								on desktop, tablet, and mobile devices.
+								Optimized for mobile devices with touch-friendly interfaces. Send and redeem gifts seamlessly on any device.
 							</p>
 						</motion.div>
 
@@ -295,15 +306,14 @@ export default function LandingPage() {
 							whileInView={{ opacity: 1, y: 0 }}
 							viewport={{ once: true }}
 							transition={{ duration: 0.5, delay: 0.5 }}
-							className="bg-card rounded-xl p-6 shadow-sm border"
+							className="bg-black/40 backdrop-blur-sm rounded-xl p-6 shadow-lg border border-white/10"
 						>
 							<div className="h-12 w-12 rounded-full bg-primary/10 flex items-center justify-center mb-6">
-								<Shield className="h-6 w-6 text-primary" />
+								<Star className="h-6 w-6 text-primary" />
 							</div>
-							<h3 className="text-xl font-semibold mb-2">Easy Customization</h3>
+							<h3 className="text-xl font-semibold mb-2">Multi-Chain Ready</h3>
 							<p className="text-muted-foreground">
-								Centralized configuration system makes it easy to
-								customize branding, navigation, and features.
+								Built for expansion to ETH, Polygon, Solana and more via Chainlink CCIP or Wormhole integration.
 							</p>
 						</motion.div>
 					</div>
@@ -311,7 +321,7 @@ export default function LandingPage() {
 			</section>
 
 			{/* How It Works Section */}
-			<section id="how-it-works" className="py-20 bg-muted/50">
+			<section id="how-it-works" className="py-20 bg-black/20 backdrop-blur-sm border-y border-white/5">
 				<div className="container">
 					<div className="text-center mb-16">
 						<motion.h2
@@ -321,7 +331,7 @@ export default function LandingPage() {
 							transition={{ duration: 0.5 }}
 							className="text-3xl md:text-4xl font-bold mb-4"
 						>
-							How It Works
+							How <span className="text-gradient_gifto">Gifto</span> Works
 						</motion.h2>
 						<motion.p
 							initial={{ opacity: 0 }}
@@ -330,7 +340,7 @@ export default function LandingPage() {
 							transition={{ duration: 0.5, delay: 0.1 }}
 							className="text-xl text-muted-foreground max-w-2xl mx-auto"
 						>
-							Get started with your dashboard in three simple steps
+							Send crypto gifts in three simple steps using Hedera's scheduled transactions
 						</motion.p>
 					</div>
 
@@ -371,10 +381,9 @@ export default function LandingPage() {
 									<path d="M8 14h.01"></path>
 								</svg>
 							</div>
-							<h3 className="text-xl font-semibold mb-4">Configure & Customize</h3>
+							<h3 className="text-xl font-semibold mb-4">Create Your Gift</h3>
 							<p className="text-muted-foreground">
-								Update the template configuration to match your brand,
-								navigation, and feature requirements.
+								Choose HBAR or any HTS token, set the amount, and select either a specific recipient or create an open link with PIN protection.
 							</p>
 						</motion.div>
 
@@ -407,11 +416,10 @@ export default function LandingPage() {
 								</svg>
 							</div>
 							<h3 className="text-xl font-semibold mb-4">
-								Connect Your Data
+								Sign & Share
 							</h3>
 							<p className="text-muted-foreground">
-								Replace the mock data with your real API calls
-								to display your actual business metrics.
+								Sign a scheduled transaction that locks funds safely in your wallet. Share the gift link or QR code with your recipient.
 							</p>
 						</motion.div>
 
@@ -444,10 +452,9 @@ export default function LandingPage() {
 									<path d="M11 15h5"></path>
 								</svg>
 							</div>
-							<h3 className="text-xl font-semibold mb-4">Deploy & Scale</h3>
+							<h3 className="text-xl font-semibold mb-4">Instant Redemption</h3>
 							<p className="text-muted-foreground">
-								Deploy your customized dashboard to Vercel, Netlify,
-								or any hosting platform with ease.
+								Recipient clicks the link, connects their Hedera wallet, and co-signs. Hedera instantly executes the transfer with confetti! 🎉
 							</p>
 						</motion.div>
 					</div>
@@ -466,27 +473,35 @@ export default function LandingPage() {
 				>
 					<div className="max-w-3xl mx-auto text-center">
 						<h2 className="text-3xl md:text-4xl font-bold mb-6">
-							Start Building Your Dashboard
+							Ready to Send Your First <span className="text-gradient_gifto">Gift</span>?
 						</h2>
 						<p className="text-xl text-muted-foreground mb-8">
-							This template is open source and ready to use. Customize it
-							for your project or contribute to make it even better.
+							Experience the future of crypto gifting on Hedera Hashgraph. 
+							Zero custody, instant redemption, maximum security.
 						</p>
-						<Link href="/dashboard" passHref>
-							<Button
-								size="lg"
-								className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700"
-							>
-								View Dashboard Template
-								<ArrowRight className="ml-2 h-5 w-5" />
-							</Button>
-						</Link>
+						<div className="flex flex-col sm:flex-row gap-4 justify-center">
+							<Link href="/dashboard" passHref>
+								<Button
+									size="lg"
+									className="btn-gifto text-lg px-8 py-4"
+								>
+									<Gift className="mr-2 h-5 w-5" />
+									Send Your First Gift
+								</Button>
+							</Link>
+							<Link href="/redeem" passHref>
+								<Button size="lg" variant="outline" className="border-primary text-primary hover:bg-primary/10">
+									<Download className="mr-2 h-5 w-5" />
+									Redeem a Gift
+								</Button>
+							</Link>
+						</div>
 					</div>
 				</motion.div>
 			</section>
 
 			{/* Footer */}
-			<footer className="py-12 bg-muted">
+			<footer className="py-12 bg-black/30 backdrop-blur-sm border-t border-white/10">
 				<div className="container">
 					<div className="grid grid-cols-1 md:grid-cols-4 gap-8">
 						<div className="space-y-4">
@@ -498,70 +513,70 @@ export default function LandingPage() {
 								className="w-32"
 							/>
 							<p className="text-sm text-muted-foreground">
-								Modern dashboard template built with Next.js 15, TypeScript,
-								and beautiful UI components.
+								Send crypto gifts instantly on Hedera Hashgraph. Zero custody risk, 
+								lightning-fast redemption, and seamless user experience.
 							</p>
 						</div>
 						<div>
-							<h3 className="font-medium mb-4">Navigation</h3>
+							<h3 className="font-medium mb-4">Features</h3>
 							<ul className="space-y-2">
+								<li>
+									<Link
+										href="#features"
+										className="text-sm text-muted-foreground hover:text-foreground"
+									>
+										Why Gifto?
+									</Link>
+								</li>
+								<li>
+									<Link
+										href="#how-it-works"
+										className="text-sm text-muted-foreground hover:text-foreground"
+									>
+										How It Works
+									</Link>
+								</li>
 								<li>
 									<Link
 										href="/dashboard"
 										className="text-sm text-muted-foreground hover:text-foreground"
 									>
-										Dashboard
-									</Link>
-								</li>
-								<li>
-									<Link
-										href="/dashboard/analytics"
-										className="text-sm text-muted-foreground hover:text-foreground"
-									>
-										Analytics
-									</Link>
-								</li>
-								<li>
-									<Link
-										href="/dashboard/reports"
-										className="text-sm text-muted-foreground hover:text-foreground"
-									>
-										Reports
+										Send a Gift
 									</Link>
 								</li>
 							</ul>
 						</div>
 						<div>
-							<h3 className="font-medium mb-4">Resources</h3>
+							<h3 className="font-medium mb-4">Learn More</h3>
 							<ul className="space-y-2">
 								<li>
 									<a
-										href="https://nextjs.org"
+										href="https://hedera.com"
 										target="_blank"
 										rel="noopener noreferrer"
 										className="text-sm text-muted-foreground hover:text-foreground"
 									>
-										Next.js
+										Hedera Network
 									</a>
 								</li>
 								<li>
 									<a
-										href="https://github.com/your-username/nextjs-dashboard-template"
+										href="https://docs.hedera.com/hedera/sdks-and-apis/scheduled-transactions"
 										target="_blank"
 										rel="noopener noreferrer"
 										className="text-sm text-muted-foreground hover:text-foreground"
 									>
-										GitHub Repository
+										Scheduled Transactions
 									</a>
 								</li>
 								<li>
 									<a
-										href="https://ui.shadcn.com"
+										href="https://portal.hedera.com"
 										target="_blank"
 										rel="noopener noreferrer"
 										className="text-sm text-muted-foreground hover:text-foreground"
 									>
-										shadcn/ui
+										Hedera Portal
 									</a>
 								</li>
 							</ul>
@@ -645,8 +660,8 @@ export default function LandingPage() {
 					</div>
 					<div className="mt-12 pt-8 border-t border-border text-center text-sm text-muted-foreground">
 						<p>
-							© {new Date().getFullYear()} {templateConfig.branding.appName} - An open source dashboard template
-							for the developer community
+							© {new Date().getFullYear()} {templateConfig.branding.appName} - Revolutionizing crypto gifting on Hedera Hashgraph.
+							Built with ❤️ for the decentralized future.
 						</p>
 					</div>
 				</div>

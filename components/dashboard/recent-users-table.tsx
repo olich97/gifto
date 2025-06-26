@@ -9,14 +9,14 @@ async function RecentUsersContent() {
 	const users = await getUsers({ limit: 5, sortBy: "joinDate", sortOrder: "desc" });
 
 	return (
-		<Card className="col-span-3">
+		<Card className="col-span-3 bg-black/40 backdrop-blur-sm border-white/10">
 			<CardHeader>
 				<CardTitle>Recent Users</CardTitle>
 			</CardHeader>
 			<CardContent>
 				<div className="space-y-4">
 					{users.map((user) => (
-						<div key={user.id} className="flex items-center justify-between p-3 border rounded-lg hover:bg-accent/50 transition-colors">
+						<div key={user.id} className="flex items-center justify-between p-3 border border-white/10 rounded-lg hover:bg-white/5 transition-colors">
 							<div className="flex items-center space-x-3">
 								<Avatar className="h-9 w-9">
 									<AvatarFallback className="text-xs font-medium">
@@ -54,14 +54,14 @@ async function RecentUsersContent() {
 
 function RecentUsersTableSkeleton() {
 	return (
-		<Card className="col-span-3">
+		<Card className="col-span-3 bg-black/40 backdrop-blur-sm border-white/10">
 			<CardHeader>
 				<CardTitle>Recent Users</CardTitle>
 			</CardHeader>
 			<CardContent>
 				<div className="space-y-4">
 					{[...Array(5)].map((_, i) => (
-						<div key={i} className="flex items-center justify-between p-3 border rounded-lg">
+						<div key={i} className="flex items-center justify-between p-3 border border-white/10 rounded-lg">
 							<div className="flex items-center space-x-3">
 								<Skeleton className="h-9 w-9 rounded-full" />
 								<div className="space-y-2">

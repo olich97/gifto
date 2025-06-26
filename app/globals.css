@@ -4,61 +4,156 @@
 
 @layer base {
   :root {
+    /* Light theme - minimal usage for Gifto */
     --background: 0 0% 100%;
     --foreground: 240 4% 9%;
     --card: 0 0% 100%;
     --card-foreground: 240 4% 9%;
     --popover: 0 0% 100%;
     --popover-foreground: 240 4% 9%;
-    --primary: 240 5.9% 10%;
+    --primary: 255 77% 65%; /* flamingo */
     --primary-foreground: 0 0% 98%;
     --secondary: 240 4.8% 95.9%;
     --secondary-foreground: 240 5.9% 10%;
     --muted: 240 4.8% 95.9%;
     --muted-foreground: 240 3.8% 46.1%;
-    --accent: 240 4.8% 95.9%;
-    --accent-foreground: 240 5.9% 10%;
-    --destructive: 0 84.2% 60.2%;
+    --accent: 22 100% 62%; /* tangerine */
+    --accent-foreground: 0 0% 98%;
+    --destructive: 0 100% 65%; /* error */
     --destructive-foreground: 0 0% 98%;
     --border: 240 5.9% 90%;
     --input: 240 5.9% 90%;
-    --ring: 240 5.9% 10%;
-    --radius: 0.55rem;
+    --ring: 255 77% 65%;
+    --radius: 1.5rem; /* card radius for Gifto */
   }
 
   .dark {
-    --background: 240 4% 9%;
+    /* Dark theme - primary theme for Gifto */
+    --background: 236 89% 6%; /* midnight */
     --foreground: 0 0% 98%;
-    --card: 240 4% 9%;
+    --card: 240 57% 18%; /* dusk */
     --card-foreground: 0 0% 98%;
-    --popover: 240 4% 9%;
+    --popover: 236 89% 6%; /* midnight */
     --popover-foreground: 0 0% 98%;
-    --primary: 0 0% 98%;
-    --primary-foreground: 240 5.9% 10%;
-    --secondary: 240 3% 13%;
+    --primary: 255 77% 65%; /* flamingo */
+    --primary-foreground: 0 0% 98%;
+    --secondary: 245 45% 25%; /* violetFog */
     --secondary-foreground: 0 0% 98%;
-    --muted: 240 3% 13%;
-    --muted-foreground: 240 5% 64.9%;
-    --accent: 240 3% 15.9%;
+    --muted: 245 45% 25%; /* violetFog */
+    --muted-foreground: 0 0% 70%;
+    --accent: 22 100% 62%; /* tangerine */
     --accent-foreground: 0 0% 98%;
-    --destructive: 0 62.8% 30.6%;
+    --destructive: 0 100% 65%; /* error */
     --destructive-foreground: 0 0% 98%;
-    --border: 240 3% 13%;
-    --input: 240 3% 13%;
-    --ring: 240 4.9% 83.9%;
+    --border: 245 45% 25%; /* violetFog */
+    --input: 245 45% 25%; /* violetFog */
+    --ring: 255 77% 65%; /* flamingo */
   }
 }
 
 @layer base {
   * {
     @apply border-border;
-    font-family: Avenir, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
-      "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji",
-      "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji", sans-serif !important;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+      "Helvetica Neue", Arial, "Noto Sans", sans-serif !important;
+  }
+  
+  /* Ensure all main content appears above background effects */
+  .relative {
+    z-index: 10;
+  }
+  
+  /* Additional starfield layer for more density */
+  main::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: 
+      radial-gradient(0.5px 0.5px at 60px 45px, rgba(255, 255, 255, 0.4), transparent),
+      radial-gradient(1px 1px at 110px 15px, rgba(255, 77, 157, 0.6), transparent),
+      radial-gradient(0.5px 0.5px at 180px 65px, rgba(255, 138, 57, 0.5), transparent),
+      radial-gradient(1px 1px at 240px 35px, rgba(41, 223, 255, 0.6), transparent),
+      radial-gradient(0.5px 0.5px at 300px 85px, rgba(255, 255, 255, 0.4), transparent),
+      radial-gradient(1px 1px at 360px 55px, rgba(255, 77, 157, 0.5), transparent),
+      radial-gradient(0.5px 0.5px at 410px 25px, rgba(255, 138, 57, 0.6), transparent),
+      radial-gradient(0.5px 0.5px at 470px 95px, rgba(255, 255, 255, 0.3), transparent),
+      radial-gradient(1px 1px at 30px 105px, rgba(41, 223, 255, 0.5), transparent),
+      radial-gradient(0.5px 0.5px at 90px 135px, rgba(255, 77, 157, 0.4), transparent),
+      radial-gradient(1px 1px at 150px 175px, rgba(255, 255, 255, 0.6), transparent),
+      radial-gradient(0.5px 0.5px at 210px 155px, rgba(255, 138, 57, 0.5), transparent),
+      radial-gradient(1px 1px at 280px 195px, rgba(41, 223, 255, 0.6), transparent),
+      radial-gradient(0.5px 0.5px at 340px 165px, rgba(255, 255, 255, 0.4), transparent),
+      radial-gradient(1px 1px at 400px 185px, rgba(255, 77, 157, 0.5), transparent),
+      radial-gradient(0.5px 0.5px at 460px 145px, rgba(255, 138, 57, 0.6), transparent);
+    background-repeat: repeat;
+    background-size: 500px 220px;
+    pointer-events: none;
+    z-index: 2;
+    animation: starfieldTwinkle 12s ease-in-out infinite;
+    animation-delay: 2s;
   }
 
   body {
-    @apply bg-background text-foreground;
+    @apply text-foreground;
+    background: linear-gradient(180deg, #1A1B3A 0%, #2D1B3A 35%, #3A1B3A 70%, #4A1D3A 100%);
+    background-attachment: fixed;
+    min-height: 100vh;
+    position: relative;
+  }
+  
+  body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: 
+      radial-gradient(circle at 25% 25%, rgba(255, 77, 157, 0.03) 0%, transparent 60%),
+      radial-gradient(circle at 75% 75%, rgba(255, 138, 57, 0.02) 0%, transparent 60%);
+    pointer-events: none;
+    z-index: 0;
+  }
+  
+  body::after {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: 
+      radial-gradient(1px 1px at 20px 30px, rgba(255, 255, 255, 0.6), transparent),
+      radial-gradient(1px 1px at 40px 70px, rgba(255, 77, 157, 0.8), transparent),
+      radial-gradient(1px 1px at 90px 40px, rgba(255, 138, 57, 0.7), transparent),
+      radial-gradient(1px 1px at 130px 80px, rgba(255, 255, 255, 0.5), transparent),
+      radial-gradient(1px 1px at 160px 30px, rgba(41, 223, 255, 0.6), transparent),
+      radial-gradient(2px 2px at 220px 60px, rgba(255, 77, 157, 0.7), transparent),
+      radial-gradient(1px 1px at 270px 20px, rgba(255, 255, 255, 0.6), transparent),
+      radial-gradient(1px 1px at 320px 90px, rgba(255, 138, 57, 0.8), transparent),
+      radial-gradient(2px 2px at 380px 50px, rgba(255, 255, 255, 0.5), transparent),
+      radial-gradient(1px 1px at 420px 10px, rgba(41, 223, 255, 0.7), transparent),
+      radial-gradient(1px 1px at 20px 120px, rgba(255, 138, 57, 0.6), transparent),
+      radial-gradient(2px 2px at 80px 160px, rgba(255, 255, 255, 0.7), transparent),
+      radial-gradient(1px 1px at 140px 200px, rgba(255, 77, 157, 0.6), transparent),
+      radial-gradient(1px 1px at 200px 140px, rgba(41, 223, 255, 0.8), transparent),
+      radial-gradient(1px 1px at 260px 180px, rgba(255, 255, 255, 0.5), transparent),
+      radial-gradient(2px 2px at 320px 220px, rgba(255, 138, 57, 0.7), transparent),
+      radial-gradient(1px 1px at 380px 160px, rgba(255, 77, 157, 0.8), transparent),
+      radial-gradient(1px 1px at 440px 200px, rgba(255, 255, 255, 0.6), transparent);
+    background-repeat: repeat;
+    background-size: 480px 240px;
+    pointer-events: none;
+    z-index: 1;
+    animation: starfieldTwinkle 8s ease-in-out infinite;
+  }
+  
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Poppins', 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif !important;
+    font-weight: 700;
   }
 }
 
@@ -140,6 +235,234 @@
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
+}
+
+.text-gradient_gifto {
+  background: linear-gradient(135deg, #FF4D9D 0%, #FF8A39 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.bg-gradient_gifto {
+  background: linear-gradient(135deg, #FF4D9D 0%, #FF8A39 100%);
+}
+
+.bg-gradient_midnight {
+  background: linear-gradient(180deg, #1B1243 0%, #0C0E25 100%);
+}
+
+.mockup-grid {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  opacity: 0.03;
+  background-image: 
+    radial-gradient(circle at 1px 1px, rgba(255, 255, 255, 0.8) 1px, transparent 0);
+  background-size: 40px 40px;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.mockup-accent {
+  position: absolute;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.mockup-accent-1 {
+  top: 15%;
+  right: 10%;
+  width: 120px;
+  height: 120px;
+  background: radial-gradient(circle, rgba(255, 77, 157, 0.08) 0%, transparent 70%);
+  border-radius: 50%;
+  filter: blur(20px);
+}
+
+.mockup-accent-2 {
+  bottom: 20%;
+  left: 8%;
+  width: 80px;
+  height: 80px;
+  background: radial-gradient(circle, rgba(255, 138, 57, 0.06) 0%, transparent 70%);
+  border-radius: 50%;
+  filter: blur(15px);
+}
+
+.mockup-stars {
+  position: absolute;
+  width: 4px;
+  height: 4px;
+  background: radial-gradient(circle, rgba(255, 255, 255, 1) 0%, rgba(255, 255, 255, 0.8) 100%);
+  border-radius: 50%;
+  pointer-events: none;
+  animation: coolSparkle 6s ease-in-out infinite;
+  box-shadow: 
+    0 0 10px rgba(255, 255, 255, 0.8), 
+    0 0 20px rgba(255, 255, 255, 0.4),
+    0 0 30px rgba(255, 255, 255, 0.2);
+  filter: brightness(1.2);
+}
+
+.mockup-stars:nth-child(2n) {
+  background: radial-gradient(circle, rgba(255, 77, 157, 1) 0%, rgba(255, 77, 157, 0.7) 100%);
+  animation-delay: 1.5s;
+  width: 3.5px;
+  height: 3.5px;
+  box-shadow: 
+    0 0 8px rgba(255, 77, 157, 0.9), 
+    0 0 16px rgba(255, 77, 157, 0.5),
+    0 0 24px rgba(255, 77, 157, 0.3);
+}
+
+.mockup-stars:nth-child(3n) {
+  background: radial-gradient(circle, rgba(255, 138, 57, 1) 0%, rgba(255, 138, 57, 0.7) 100%);
+  animation-delay: 3s;
+  width: 3px;
+  height: 3px;
+  box-shadow: 
+    0 0 7px rgba(255, 138, 57, 0.8), 
+    0 0 14px rgba(255, 138, 57, 0.4),
+    0 0 21px rgba(255, 138, 57, 0.2);
+}
+
+.mockup-stars:nth-child(4n) {
+  background: radial-gradient(circle, rgba(41, 223, 255, 1) 0%, rgba(41, 223, 255, 0.6) 100%);
+  animation-delay: 4.5s;
+  width: 2.5px;
+  height: 2.5px;
+  box-shadow: 
+    0 0 6px rgba(41, 223, 255, 0.7), 
+    0 0 12px rgba(41, 223, 255, 0.4),
+    0 0 18px rgba(41, 223, 255, 0.2);
+}
+
+@keyframes coolSparkle {
+  0%, 100% {
+    opacity: 0.6;
+    transform: scale(0.9) rotate(0deg);
+    filter: brightness(1.2);
+  }
+  25% {
+    opacity: 0.9;
+    transform: scale(1.1) rotate(90deg);
+    filter: brightness(1.4);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.2) rotate(180deg);
+    filter: brightness(1.6);
+  }
+  75% {
+    opacity: 0.9;
+    transform: scale(1.1) rotate(270deg);
+    filter: brightness(1.4);
+  }
+}
+
+@keyframes starfieldTwinkle {
+  0%, 100% {
+    opacity: 0.8;
+    filter: brightness(1.0);
+  }
+  25% {
+    opacity: 0.6;
+    filter: brightness(0.8);
+  }
+  50% {
+    opacity: 1.0;
+    filter: brightness(1.2);
+  }
+  75% {
+    opacity: 0.7;
+    filter: brightness(0.9);
+  }
+}
+
+@layer components {
+  .gift-card {
+    border-radius: 1.5rem;
+    background: linear-gradient(180deg, #1B1243 0%, #0C0E25 100%);
+    padding: 1.5rem;
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+  }
+
+  .btn-gifto {
+    background: linear-gradient(135deg, #FF4D9D 0%, #FF8A39 100%);
+    color: white;
+    border-radius: 9999px;
+    padding: 0.75rem 1.5rem;
+    font-weight: 600;
+    box-shadow: 0 4px 14px 0 rgba(255, 77, 157, 0.3);
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .btn-gifto::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(135deg, #FF6BA8 0%, #FFA055 100%);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    z-index: 0;
+  }
+  
+  .btn-gifto:hover::before {
+    opacity: 1;
+  }
+  
+  .btn-gifto:hover {
+    box-shadow: 0 8px 25px 0 rgba(255, 77, 157, 0.4);
+    transform: translateY(-2px);
+  }
+  
+  .btn-gifto:active {
+    transform: translateY(0px);
+    box-shadow: 0 4px 14px 0 rgba(255, 77, 157, 0.3);
+  }
+  
+  .btn-gifto > * {
+    position: relative;
+    z-index: 2;
+  }
+
+  .badge-pending {
+    background-color: rgba(249, 162, 60, 0.2);
+    color: #F9A23C;
+    display: inline-block;
+    padding: 0.25rem 0.75rem;
+    border-radius: 9999px;
+    font-size: 0.75rem;
+    font-weight: 600;
+  }
+
+  .badge-claimed {
+    background-color: rgba(94, 245, 140, 0.2);
+    color: #5EF58C;
+    display: inline-block;
+    padding: 0.25rem 0.75rem;
+    border-radius: 9999px;
+    font-size: 0.75rem;
+    font-weight: 600;
+  }
+
+  .badge-expired {
+    background-color: rgba(255, 78, 78, 0.2);
+    color: #FF4E4E;
+    display: inline-block;
+    padding: 0.25rem 0.75rem;
+    border-radius: 9999px;
+    font-size: 0.75rem;
+    font-weight: 600;
+  }
 }
 
 @keyframes fadeUp {

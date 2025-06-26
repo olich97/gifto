@@ -44,9 +44,9 @@ export function DashboardNav({
             >
               <span
                 className={cn(
-                  "text-muted-foreground group flex items-center rounded-md px-3 py-2 text-sm font-medium hover:bg-primary/10",
+                  "text-muted-foreground group flex items-center rounded-md px-3 py-2 text-sm font-medium transition-all duration-300 hover:bg-gradient-to-r hover:from-[#FF4D9D]/20 hover:to-[#FF8A39]/20 hover:text-white",
                   isHome || isActive
-                    ? "text-secondary bg-primary hover:bg-primary rounded-md justify-start"
+                    ? "text-white bg-gradient-to-r from-[#FF4D9D] to-[#FF8A39] shadow-lg font-semibold"
                     : "transparent",
                   item.disabled && "cursor-not-allowed opacity-80"
                 )}
