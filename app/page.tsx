@@ -20,6 +20,7 @@ import {
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { templateConfig } from "@/template.config";
+import { WalletConnectButton } from "@/components/wallet-connect-button";
 
 export default function LandingPage() {
 	const [mounted, setMounted] = useState(false);
@@ -59,16 +60,18 @@ export default function LandingPage() {
 						>
 							How It Works
 						</Link>
+						<WalletConnectButton showAccountId={false} />
 						<Link href="/dashboard" passHref>
-							<Button>
-								Launch Dashboard
+							<Button variant="outline">
+								Dashboard
 								<ArrowRight className="ml-2 h-4 w-4" />
 							</Button>
 						</Link>
 					</div>
-					<div className="md:hidden">
+					<div className="md:hidden flex items-center gap-2">
+						<WalletConnectButton size="sm" showAccountId={false} />
 						<Link href="/dashboard" passHref>
-							<Button size="sm">
+							<Button size="sm" variant="outline">
 								Dashboard
 								<ArrowRight className="ml-2 h-3 w-3" />
 							</Button>

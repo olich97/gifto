@@ -7,6 +7,7 @@ import { templateConfig } from "@/template.config";
 import { PanelLeftOpen, PanelLeftClose } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
+import { WalletConnectButton } from "@/components/wallet-connect-button";
 import Image from "next/image";
 import {
   Tooltip,
@@ -57,7 +58,12 @@ const FooterSection = ({
   isCollapsed: boolean;
   toggleCollapse: Function;
 }) => (
-  <footer className="border-t border-white/10 px-4 py-4">
+  <footer className="border-t border-white/10 px-4 py-4 space-y-3">
+    {!isCollapsed && (
+      <div className="px-1">
+        <WalletConnectButton size="sm" className="w-full" />
+      </div>
+    )}
     <TooltipProvider delayDuration={50}>
       <Tooltip>
         <TooltipTrigger asChild>
