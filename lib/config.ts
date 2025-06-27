@@ -10,7 +10,12 @@ export const getMetadata = () => ({
   name: 'Gifto',
   description: 'Send crypto gifts instantly on Hedera Hashgraph',
   url: typeof window !== 'undefined' ? window.location.origin : 'https://gifto.app',
-  icons: [typeof window !== 'undefined' ? `${window.location.origin}/gifto.png` : 'https://gifto.app/gifto.png']
+  icons: [typeof window !== 'undefined' ? `${window.location.origin}/gifto.png` : 'https://gifto.app/gifto.png'],
+  // Add Hedera-specific metadata
+  redirect: {
+    native: 'gifto://',
+    universal: typeof window !== 'undefined' ? window.location.origin : 'https://gifto.app'
+  }
 })
 
 // Client-side configuration creation

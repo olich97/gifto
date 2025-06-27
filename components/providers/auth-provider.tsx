@@ -16,6 +16,18 @@ export const AuthProvider = ({ children, requireAuth = false }: AuthProviderProp
   const { isConnected, isLoading, isInitialized, accountId } = useWallet()
   const router = useRouter()
 
+  // Auto-redirect to dashboard when wallet connects
+  useEffect(() => {
+    if (isConnected && accountId && !requireAuth) {
+      // If we're on a page that doesn't require auth but user just connected, redirect to dashboard
+      const currentPath = window.location.pathname
+      if (currentPath === '/' || currentPath === '/connect') {
+        console.log('Auto-redirecting to dashboard after wallet connection')
+        router.push('/dashboard')
+      }
+    }
+  }, [isConnected, accountId, requireAuth, router])
+
   // Debug logging
   console.log('AuthProvider - requireAuth:', requireAuth, 'isConnected:', isConnected, 'isLoading:', isLoading, 'isInitialized:', isInitialized, 'accountId:', accountId)
 

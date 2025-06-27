@@ -497,3 +497,49 @@
   grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
   gap: 1rem;
 }
+
+/* Enhanced wallet connect button styling */
+@layer components {
+  .wallet-button-glow {
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .wallet-button-glow::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    transition: left 0.5s;
+  }
+  
+  .wallet-button-glow:hover::before {
+    left: 100%;
+  }
+  
+  /* Custom dropdown menu item hover - matches sidebar */
+  .dropdown-menu-item {
+    @apply text-muted-foreground rounded-md mx-2 transition-all duration-300;
+  }
+  
+  .dropdown-menu-item:hover,
+  .dropdown-menu-item:focus,
+  .dropdown-menu-item[data-highlighted] {
+    background: linear-gradient(to right, rgba(255, 77, 157, 0.2), rgba(255, 138, 57, 0.2)) !important;
+    color: white !important;
+  }
+  
+  .dropdown-menu-item-danger {
+    @apply text-red-400 rounded-md mx-2 transition-all duration-300;
+  }
+  
+  .dropdown-menu-item-danger:hover,
+  .dropdown-menu-item-danger:focus,
+  .dropdown-menu-item-danger[data-highlighted] {
+    background: linear-gradient(to right, rgba(239, 68, 68, 0.2), rgba(220, 38, 38, 0.2)) !important;
+    color: rgb(252 165 165) !important;
+  }
+}

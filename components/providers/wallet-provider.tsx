@@ -2,6 +2,7 @@
 
 import { createContext, useContext, ReactNode, useState, useEffect } from 'react'
 import { AppKitProvider } from './appkit-provider'
+import { AppKitHookMonitor } from './appkit-hook-monitor'
 
 interface WalletContextType {
   isConnected: boolean
@@ -37,46 +38,26 @@ interface WalletProviderProps {
   children: ReactNode
 }
 
+
 const WalletProviderInner = ({ children }: WalletProviderProps) => {
   const [isConnected, setIsConnected] = useState(false)
   const [accountId, setAccountId] = useState<string | null>(null)
   const [network, setNetwork] = useState<string | null>(null)
   const [isLoading, setIsLoading] = useState(true)
   const [isInitialized, setIsInitialized] = useState(false)
-  const [appKitHooks, setAppKitHooks] = useState<any>(null)
 
-  useEffect(() => {
-    const initializeHooks = async () => {
-      try {
-        const { useAppKit, useAppKitAccount, useAppKitNetwork, useAppKitState } = await import('@reown/appkit/react')
-        setAppKitHooks({ useAppKit, useAppKitAccount, useAppKitNetwork, useAppKitState })
-        setIsInitialized(true)
-      } catch (error) {
-        console.error('Failed to initialize AppKit hooks:', error)
-      }
-    }
-
-    // Delay to ensure AppKit is initialized
-    const timer = setTimeout(initializeHooks, 1000)
-    return () => clearTimeout(timer)
-  }, [])
+  const handleStateChange = (state: any) => {
+    console.log('Wallet state changed via hooks:', state)
+    setIsConnected(state.isConnected)
+    setAccountId(state.accountId)
+    setNetwork(state.network)
+    setIsLoading(state.isLoading)
+    setIsInitialized(state.isInitialized)
+  }
 
   const connect = () => {
-    if (appKitHooks) {
-      const { useAppKit } = appKitHooks
-      try {
-        // This is a simplified approach - in practice you'd need to call this differently
-        // For now, we'll handle this through direct AppKit modal opening
-        if (typeof window !== 'undefined' && (window as any).appKit) {
-          (window as any).appKit.open()
-        } else {
-          console.log('Opening wallet connection...')
-          // Fallback approach
-          setIsLoading(true)
-        }
-      } catch (error) {
-        console.error('Error connecting wallet:', error)
-      }
+    if (typeof window !== 'undefined' && (window as any).appKit) {
+      (window as any).appKit.open()
     }
   }
 
@@ -85,54 +66,34 @@ const WalletProviderInner = ({ children }: WalletProviderProps) => {
       if (typeof window !== 'undefined' && (window as any).appKit) {
         await (window as any).appKit.disconnect()
       }
-      setIsConnected(false)
-      setAccountId(null)
-      setNetwork(null)
     } catch (error) {
       console.error('Error disconnecting wallet:', error)
     }
   }
 
   const refreshConnection = () => {
-    // Check connection state
-    if (typeof window !== 'undefined' && (window as any).appKit) {
-      try {
-        const state = (window as any).appKit.getState()
-        setIsConnected(Boolean(state.address))
-        setAccountId(state.address || null)
-        setNetwork(state.selectedNetworkId || null)
-      } catch (error) {
-        console.error('Error refreshing connection:', error)
-      }
-    }
-    setIsLoading(false)
+    // The state is now managed through AppKit hooks
+    console.log('Connection refresh requested - state managed by hooks')
   }
 
-  useEffect(() => {
-    if (isInitialized) {
-      refreshConnection()
-      
-      // Set up periodic state checking
-      const interval = setInterval(refreshConnection, 2000)
-      return () => clearInterval(interval)
-    }
-  }, [isInitialized])
-
   return (
-    <WalletContext.Provider 
-      value={{
-        isConnected,
-        accountId,
-        network,
-        isLoading: isLoading && !isInitialized,
-        isInitialized,
-        connect,
-        disconnect,
-        refreshConnection
-      }}
-    >
-      {children}
-    </WalletContext.Provider>
+    <>
+      <AppKitHookMonitor onStateChange={handleStateChange} />
+      <WalletContext.Provider 
+        value={{
+          isConnected,
+          accountId,
+          network,
+          isLoading,
+          isInitialized,
+          connect,
+          disconnect,
+          refreshConnection
+        }}
+      >
+        {children}
+      </WalletContext.Provider>
+    </>
   )
 }
 
