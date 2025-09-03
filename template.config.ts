@@ -55,7 +55,7 @@ export const templateConfig: TemplateConfig = {
   branding: {
     appName: "gifto",
     tagline: "Instant Crypto Gift Cards",
-    description: "Send Hedera tokens as digital gift cards that can be shared by link or QR and redeemed in seconds",
+    description: "Send crypto tokens as digital gift cards that can be shared by link or QR and redeemed in seconds",
     logoLight: "/gifto.png",
     logoDark: "/gifto_white.png",
     favicon: "/favicon.ico",
@@ -90,10 +90,10 @@ export const templateConfig: TemplateConfig = {
   
   dashboard: {
     title: "Gift Dashboard",
-    subtitle: "Send and receive crypto gifts on Hedera Hashgraph",
+    subtitle: "Send and receive crypto gifts across multiple blockchains",
     externalLinks: [
-      { label: "HashScan Explorer", url: "https://hashscan.io", icon: "external-link" },
-      { label: "Hedera Portal", url: "https://portal.hedera.com", icon: "external-link" }
+      { label: "Etherscan", url: "https://etherscan.io", icon: "external-link" },
+      { label: "OpenSea", url: "https://opensea.io", icon: "external-link" }
     ],
   },
 

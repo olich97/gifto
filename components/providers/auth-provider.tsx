@@ -16,10 +16,10 @@ export const AuthProvider = ({ children, requireAuth = false }: AuthProviderProp
   const { isConnected, isLoading, isInitialized, accountId } = useWallet()
   const router = useRouter()
 
-  // Auto-redirect to dashboard when wallet connects
+  // Auto-redirect to dashboard when wallet connects (only on landing page)
   useEffect(() => {
     if (isConnected && accountId && !requireAuth) {
-      // If we're on a page that doesn't require auth but user just connected, redirect to dashboard
+      // If we're on the landing page and user just connected, redirect to dashboard
       const currentPath = window.location.pathname
       if (currentPath === '/' || currentPath === '/connect') {
         console.log('Auto-redirecting to dashboard after wallet connection')
@@ -59,7 +59,7 @@ export const AuthProvider = ({ children, requireAuth = false }: AuthProviderProp
               Wallet Required
             </h1>
             <p className="text-muted-foreground">
-              Connect your Hedera wallet to access the Gifto dashboard and start sending crypto gifts.
+              Connect your wallet to access the Gifto dashboard and start sending crypto gifts.
             </p>
           </div>
 
@@ -67,7 +67,7 @@ export const AuthProvider = ({ children, requireAuth = false }: AuthProviderProp
             <div className="space-y-4">
               <div className="flex items-center gap-3 text-sm text-muted-foreground">
                 <Wallet className="h-4 w-4 text-primary" />
-                <span>Supports HashPack, Blade, Kabila and more</span>
+                <span>Supports MetaMask, WalletConnect, Coinbase Wallet and more</span>
               </div>
               <div className="flex items-center gap-3 text-sm text-muted-foreground">
                 <Shield className="h-4 w-4 text-primary" />

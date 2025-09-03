@@ -1,3 +1,6 @@
+// DEPRECATED: This file is a legacy Hedera balance hook
+// TODO: Remove after complete migration to EVM - use Wagmi's useBalance hook instead
+
 import { useState, useEffect } from 'react'
 
 interface BalanceData {

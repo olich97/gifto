@@ -21,10 +21,14 @@ import {
 import { Button } from "@/components/ui/button";
 import { templateConfig } from "@/template.config";
 import { WalletConnectButton } from "@/components/wallet-connect-button";
+import { useAuthRedirect } from "@/hooks/use-auth-redirect";
 
 export default function LandingPage() {
 	const [mounted, setMounted] = useState(false);
 	const logo = templateConfig.branding.logoDark; // Always use dark logo
+	
+	// Handle auto-redirect when wallet connects
+	useAuthRedirect();
 
 	useEffect(() => {
 		setMounted(true);
@@ -109,7 +113,7 @@ export default function LandingPage() {
                 at Light Speed
               </h1>
               <p className="mx-auto mb-6 max-w-lg text-lg text-muted-foreground sm:text-xl md:mx-0 md:mb-8">
-                Send Hedera tokens as digital gift cards that can be shared by
+                Send crypto tokens as digital gift cards that can be shared by
                 link or QR and redeemed in seconds—no custodial account, no
                 complicated UX.
               </p>
@@ -240,9 +244,9 @@ export default function LandingPage() {
                 className="mb-2 text-3xl font-bold md:text-4xl"
                 style={{ color: "#29DFFF" }}
               >
-                Hedera
+                Multi-Chain
               </p>
-              <p className="text-sm text-muted-foreground">Hashgraph</p>
+              <p className="text-sm text-muted-foreground">EVM Compatible</p>
             </motion.div>
             <motion.div
               initial={{ opacity: 0, y: 20 }}
@@ -283,7 +287,7 @@ export default function LandingPage() {
               transition={{ duration: 0.5, delay: 0.1 }}
               className="mx-auto max-w-2xl text-xl text-muted-foreground"
             >
-              The safest, fastest way to send crypto gifts on Hedera Hashgraph
+              The safest, fastest way to send crypto gifts across multiple blockchains
             </motion.p>
           </div>
 
@@ -301,7 +305,7 @@ export default function LandingPage() {
               <h3 className="mb-2 text-xl font-semibold">Zero Custody Risk</h3>
               <p className="text-muted-foreground">
                 Funds stay in your wallet until redemption. Scheduled
-                transactions on Hedera ensure complete security without
+                transactions ensure complete security without
                 custodial accounts.
               </p>
             </motion.div>
@@ -321,7 +325,7 @@ export default function LandingPage() {
               </h3>
               <p className="text-muted-foreground">
                 Recipients can claim gifts in under 3 seconds. Just scan QR
-                code, connect wallet, and sign—instant transfer via Hedera.
+                code, connect wallet, and sign—instant transfer via smart contracts.
               </p>
             </motion.div>
 
@@ -356,7 +360,7 @@ export default function LandingPage() {
               </div>
               <h3 className="mb-2 text-xl font-semibold">No Signup Required</h3>
               <p className="text-muted-foreground">
-                Frictionless onboarding for recipients. They only need a Hedera
+                Frictionless onboarding for recipients. They only need an EVM-compatible
                 wallet—no accounts, no KYC, no complexity.
               </p>
             </motion.div>
@@ -423,7 +427,7 @@ export default function LandingPage() {
               transition={{ duration: 0.5, delay: 0.1 }}
               className="mx-auto max-w-2xl text-xl text-muted-foreground"
             >
-              Send crypto gifts in three simple steps using Hedera&apos;s
+              Send crypto gifts in three simple steps using smart contract
               scheduled transactions
             </motion.p>
           </div>
@@ -538,8 +542,8 @@ export default function LandingPage() {
               </div>
               <h3 className="mb-4 text-xl font-semibold">Instant Redemption</h3>
               <p className="text-muted-foreground">
-                Recipient clicks the link, connects their Hedera wallet, and
-                co-signs. Hedera instantly executes the transfer with confetti!
+                Recipient clicks the link, connects their wallet, and
+                claims the gift. Smart contract instantly executes the transfer with confetti!
                 🎉
               </p>
             </motion.div>
@@ -563,7 +567,7 @@ export default function LandingPage() {
               <span className="text-gradient_gifto">Gift</span>?
             </h2>
             <p className="mb-8 text-xl text-muted-foreground">
-              Experience the future of crypto gifting on Hedera Hashgraph. Zero
+              Experience the future of crypto gifting across multiple blockchains. Zero
               custody, instant redemption, maximum security.
             </p>
             <div className="flex flex-col justify-center gap-4 sm:flex-row">
@@ -601,7 +605,7 @@ export default function LandingPage() {
                 className="w-32"
               />
               <p className="text-sm text-muted-foreground">
-                Send crypto gifts instantly on Hedera Hashgraph. Zero custody
+                Send crypto gifts instantly across multiple blockchains. Zero custody
                 risk, lightning-fast redemption, and seamless user experience.
               </p>
             </div>
@@ -639,32 +643,32 @@ export default function LandingPage() {
               <ul className="space-y-2">
                 <li>
                   <a
-                    href="https://hedera.com"
+                    href="https://ethereum.org"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="text-sm text-muted-foreground hover:text-foreground"
                   >
-                    Hedera Network
+                    Ethereum
                   </a>
                 </li>
                 <li>
                   <a
-                    href="https://docs.hedera.com/hedera/sdks-and-apis/scheduled-transactions"
+                    href="https://docs.soliditylang.org"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="text-sm text-muted-foreground hover:text-foreground"
                   >
-                    Scheduled Transactions
+                    Smart Contracts
                   </a>
                 </li>
                 <li>
                   <a
-                    href="https://portal.hedera.com"
+                    href="https://polygon.technology"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="text-sm text-muted-foreground hover:text-foreground"
                   >
-                    Hedera Portal
+                    Polygon
                   </a>
                 </li>
               </ul>
@@ -749,7 +753,7 @@ export default function LandingPage() {
           <div className="mt-12 border-t border-border pt-8 text-center text-sm text-muted-foreground">
             <p>
               © {new Date().getFullYear()} {templateConfig.branding.appName} -
-              Revolutionizing crypto gifting on Hedera Hashgraph. Built with ❤️
+              Revolutionizing crypto gifting across multiple blockchains. Built with ❤️
               for the decentralized future.
             </p>
           </div>
